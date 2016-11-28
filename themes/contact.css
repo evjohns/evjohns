@@ -1,0 +1,89 @@
+section#contact div.contact-container {
+	margin: 20px auto;
+	width: 500px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.05);
+}
+
+section#contact form#contact-form {
+	padding: 20px;
+	margin: 10px auto;
+	width: 350px;
+}
+
+section#contact form#contact-form h3 {
+	text-align: center;
+	font-size: 1.4em;
+}
+
+section#contact form#contact-form input:not([type="submit"]), section#contact form#contact-form textarea {
+	display: inline-block;
+}	
+
+section#contact form#contact-form label {
+	display: inline-block;
+	width: 130px;
+}
+
+section#contact form#contact-form input:not([type="submit"]) {
+	border-radius: 5px;
+	border: 1px solid rgba(0,0,0,0.2);
+	padding: 5px;
+	min-width: 200px;
+	font-size: 1em;
+}
+
+section#contact form#contact-form textarea {
+	border-radius: 5px;
+	border: 1px solid rgba(0,0,0,0.2);
+	min-width: 100%;
+	margin-top: 10px;
+	font-size: 1em;
+	min-height: 200px;
+}
+
+section#contact form#contact-form input[type="submit"] {
+	background-color: #4285f4;
+	color: #fff;
+	font-size: 1em;
+	text-align: center;
+	border-radius: 3px;
+	border: 1px solid #3079ed;
+	padding: 6px;
+	cursor: pointer;
+	min-width: 150px;
+}
+
+section#contact p.err {
+	color: #f00;
+	font-weight: bold;
+}
+
+section#contact div#message-success {
+	display: none;
+	font-size: 1.4em;
+	margin: 0 auto;
+	font-weight: bold;
+	text-align: center;
+}
+
+section#contact img#message-sent {
+	width: 30px;
+	vertical-align: middle;
+	margin-left: 5px;
+}
+
+@media (max-width: 525px) {
+	section#contact div.contact-container {
+		width: 95%;
+		padding-bottom: 1%;
+	}
+	section#contact form#contact-form {
+		width: 90%;
+		padding: 1%;
+	}
+
+	section#contact div#message-success {
+		margin-top: 5%;
+	}
+}

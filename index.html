@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <html lang="en-US">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link href="../themes/index.css" rel="stylesheet" type="text/css">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="../js/typed.js"></script>
+    
+    <title>Evan Johnson web developer and designer home page</title>
+    
+</head>
+
+<body>
+<div class="full-page">
+    <header>
+        <nav class="top-nav">
+            <div class="nav-logo">
+                <span class="typed"></span>
+            </div>
+        </nav>
+    </header>
+    
+    <section id="main-menu"> 
+        <div class="top-bar"> 
+            <hr>
+        </div>
+        <div class="menu">
+            <p class="title">Evan Johnson  &middot;  Web developer  &middot;  Designer</p>
+            <ul class="menu-list">
+                <li class="portfolio-heading"><a class="portfolio">Portfolio <span class="expand">+</span><span class="shrink">-</span></a>
+                    <ul class="portfolio-items">
+                        <li><a href="http://www.buildbase.co.uk/" target="_blank">buildbase.co.uk</a></li>
+                        <li><a href="http://www.plumbase.co.uk/" target="_blank">plumbase.co.uk</a></li>
+                        <li><a href="http://www.plumbworld.co.uk/" target="_blank">plumbworld.co.uk</a></li>
+                        <li><a href="http://www.evanandfayeswedding.co.uk/" target="_blank">evanandfayeswedding.co.uk</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </section>
+</div>
+
+    <section id="contact">
+        <div class="contact-container">
+        <h3 id="contact-header">Contact</h3>
+            <form id="contact-form">
+            <p>Feel free to send me a quick message below.</p>
+                <div class="row">
+                    <!-- <label>Name</label> -->
+                    <input id="name" type="text" placeholder="Name" required>
+                    <p class="err" id="name"></p>
+                </div>
+                
+                <div class="row">
+                    <!-- <label>Email Address</label> -->
+                    <input id="email" type="email" placeholder="Email Address" required>
+                    <p class="err" id="email"></p>
+                </div>
+                
+                <div class="bottom-cell">
+                    <!-- <label>Message</label> -->
+                    <textarea id="message" placeholder="Enter your message here." required></textarea>
+                    <p class="err" id="message"></p>
+                </div>
+                
+                <button type="button">Send</button>
+
+                <div id='message-success'>
+                    <h3>Thanks for your message, I'll reply asap.</h3>
+                </div>
+
+            </form>
+        </div>
+    </section>
+
+    <!-- <footer>
+        <div id="footer">
+            <div>
+                <span><a href="/index.html">evjohns.com</a></span>
+                <a href="https://uk.linkedin.com/in/evan-johnson-25556b108" target="_blank" title="View my linkedin profile"><img id="footer-linkedin" src="../assets/linkedin-icon.png"></a>
+            </div>
+        </div>
+    </footer> -->
+
+    <div class="overlay">
+        <div class="loader"></div>
+    </div>
+
+<script>
+    $(function(){
+        $(".typed").typed({
+        strings: ["evjon", "evjohns.com"],
+        typeSpeed: 75,
+        startDelay: 1000,
+        loop: false,
+    });
+});
+
+$(".portfolio").click(function() {
+    $(".expand").toggle();
+    $(".shrink").toggle();
+    $(".portfolio-items").slideToggle();
+});
+
+$( "#contact-form button" ).click( function(e) {
+        e.preventDefault();
+        var error = false;
+        
+        if ( !($("input#name").val().length > 0) ) {
+            $( "p.err#name" ).text( "Please enter a name." );
+            error = true;
+        }
+        
+        if ( !($("input#email").val().length > 0) ) {
+            $( "p.err#email" ).text( "Please enter an email address." );
+            error = true;
+        
+        } else {
+            var email = $("input#email").val();
+            var atpos = email.indexOf("@");
+            var dotpos = email.lastIndexOf(".");
+        
+            if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= email.length) {
+                $( "p.err#email" ).text( "Please enter a valid email address." );
+                error = true
+            }
+        }
+        
+        if ( !( $("textarea#message").val().length > 0) ) {
+            $( "p.err#message" ).text( "Please enter a message." );
+            error = true;
+        }
+        
+        if (error === true) {
+            return false;
+        }
+        
+        $.ajax( {
+            type: "POST",
+            url: "../ajax/contact-form.php",
+            data: { "name": $( "input#name" ).val(), "email": $( "input#email" ).val(), "message": $( "textarea#message" ).val() },
+            success: function(result) {
+                $( "form#contact-form >*" ).fadeOut();
+                $(".contact-container h3#contact-header").fadeOut();
+                $( "div#message-success" ).delay(1000).fadeIn(500);
+            }
+        } );
+    } );
+
+$( document ).ready(function() {
+    $(document).ajaxStart(function() {
+            $(".overlay").show();
+    })
+    $(document).ajaxStop(function() {
+            $(".overlay").hide();
+    })
+});
+</script>
+
+</body>
+
+</html>
