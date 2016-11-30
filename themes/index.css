@@ -12,6 +12,7 @@ body {
 	font-weight: 400;
 	color: rgba(0,0,0,.7);
 	letter-spacing: 1px;
+	height: 100%;
 	position: relative;
 }
 
@@ -26,13 +27,7 @@ a:hover {
 }
 
 .full-page {
-	min-height: 100vw;
-}
-
-@media (max-width: 680px) {
-    .full-page {
-		min-height: 170vw;
-	}
+	min-height: 100%;
 }
 
 .nav {

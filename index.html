@@ -32,6 +32,7 @@
         <div class="menu">
             <p class="title">Evan Johnson  &middot;  Web developer  &middot;  Designer</p>
             <ul class="menu-list">
+                <li id="contact-menu"><a>Contact</a></li>
                 <li class="portfolio-heading"><a class="portfolio">Portfolio <span class="expand">+</span><span class="shrink">-</span></a>
                     <ul class="portfolio-items">
                         <li><a href="http://www.buildbase.co.uk/" target="_blank">buildbase.co.uk</a></li>
@@ -78,15 +79,6 @@
         </div>
     </section>
 
-    <!-- <footer>
-        <div id="footer">
-            <div>
-                <span><a href="/index.html">evjohns.com</a></span>
-                <a href="https://uk.linkedin.com/in/evan-johnson-25556b108" target="_blank" title="View my linkedin profile"><img id="footer-linkedin" src="../assets/linkedin-icon.png"></a>
-            </div>
-        </div>
-    </footer> -->
-
     <div class="overlay">
         <div class="loader"></div>
     </div>
@@ -101,10 +93,8 @@
     });
 });
 
-$(".portfolio").click(function() {
-    $(".expand").toggle();
-    $(".shrink").toggle();
-    $(".portfolio-items").slideToggle();
+$("#contact-menu").click(function() {
+    $('html,body').animate({scrollTop: $("#contact-form").offset().top},'slow');
 });
 
 $( "#contact-form button" ).click( function(e) {
