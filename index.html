@@ -97,6 +97,12 @@ $("#contact-menu").click(function() {
     $('html,body').animate({scrollTop: $("#contact").offset().top},'slow');
 });
 
+$(".portfolio").click(function() {
+    $(".expand").toggle();
+    $(".shrink").toggle();
+    $(".portfolio-items").slideToggle();
+});
+
 $( "#contact-form button" ).click( function(e) {
         e.preventDefault();
         var error = false;
