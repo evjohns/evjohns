@@ -72,7 +72,7 @@
                 <button type="button">Send</button>
 
                 <div id='message-success'>
-                    <h3>Thanks for your message, I'll reply asap.</h3>
+                    <h4>Thanks for your message, I'll reply asap.</h4>
                 </div>
 
             </form>
@@ -144,6 +144,7 @@ $( "#contact-form button" ).click( function(e) {
                 $( "form#contact-form >*" ).fadeOut();
                 $(".contact-container h3#contact-header").fadeOut();
                 $( "div#message-success" ).delay(1000).fadeIn(500);
+                $('html,body').animate({scrollTop: $("#contact-form").offset().top},'slow');
             }
         } );
     } );
