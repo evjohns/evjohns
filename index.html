@@ -144,7 +144,7 @@ $( "#contact-form button" ).click( function(e) {
                 $( "form#contact-form >*" ).fadeOut();
                 $(".contact-container h3#contact-header").fadeOut();
                 $( "div#message-success" ).delay(1000).fadeIn(500);
-                $('html,body').animate({scrollTop: $("#contact-form").offset().top},'slow');
+                $('html,body').animate({scrollTop: $(".contact-container").offset().top},'slow');
             }
         } );
     } );
