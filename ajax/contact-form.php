@@ -25,9 +25,9 @@ $messageSent = "
 
 $headers = "MIME-Version: 1.0" . "\r\n";
 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-$headers .= "From: ev@evjohns.com" . "\r\n";
+$headers .= "From: evjohns001@gmail.com" . "\r\n";
 $headerReceived = "From: " . $email . "\r\n";
 
-mail("ev@evjohns.com", "New message on evjohns.com", $messageReceived, $headerReceived);
+mail("evjohns001@gmail.com", "New message on evjohns.com", $messageReceived, $headerReceived);
 sleep(2);
 mail($email, $subject, $messageSent, $headers);
