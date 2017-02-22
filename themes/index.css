@@ -16,6 +16,11 @@ body {
 	position: relative;
 }
 
+h1 {
+	font-size: 14px;
+	font-weight: 400;
+}
+
 a {
 	text-decoration: none;
 	color: rgba(0,0,0,.7);
