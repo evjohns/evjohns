@@ -5,15 +5,15 @@
     <html lang="en-US">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="google-site-verification" content="uIil_-CpIu52Jc0OEesRhvh9kAXWEh0_0wJ9VCC0IJY" />
-    
+
     <link href="/themes/index.css" rel="stylesheet" type="text/css">
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
-    
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="/js/typed.js"></script>
-    
+
     <title>Evan Johnson web developer and designer home page</title>
-    
+
 </head>
 
 <body>
@@ -25,9 +25,9 @@
             </div>
         </nav>
     </header>
-    
-    <section id="main-menu"> 
-        <div class="top-bar"> 
+
+    <section id="main-menu">
+        <div class="top-bar">
             <hr>
         </div>
         <div class="menu">
@@ -53,23 +53,23 @@
             <form id="contact-form">
             <p>Feel free to send me a quick message below.</p>
                 <div class="row">
-                    <!-- <label>Name</label> -->
-                    <input id="name" type="text" placeholder="Name" required>
+                    <label for="name"></label>
+                    <input name="name" id="name" type="text" placeholder="Name" required>
                     <p class="err" id="name"></p>
                 </div>
-                
+
                 <div class="row">
-                    <!-- <label>Email Address</label> -->
-                    <input id="email" type="email" placeholder="Email Address" required>
+                    <label for="email"></label>
+                    <input id="email" name="email" type="email" placeholder="Email Address" required>
                     <p class="err" id="email"></p>
                 </div>
-                
+
                 <div class="bottom-cell">
-                    <!-- <label>Message</label> -->
-                    <textarea id="message" placeholder="Enter your message here." required></textarea>
+                    <label for="message"></label>
+                    <textarea id="message" name="message" placeholder="Enter your message here." required></textarea>
                     <p class="err" id="message"></p>
                 </div>
-                
+
                 <button type="button">Send</button>
 
                 <div id='message-success'>
@@ -107,36 +107,36 @@ $(".portfolio").click(function() {
 $( "#contact-form button" ).click( function(e) {
         e.preventDefault();
         var error = false;
-        
+
         if ( !($("input#name").val().length > 0) ) {
             $( "p.err#name" ).text( "Please enter a name." );
             error = true;
         }
-        
+
         if ( !($("input#email").val().length > 0) ) {
             $( "p.err#email" ).text( "Please enter an email address." );
             error = true;
-        
+
         } else {
             var email = $("input#email").val();
             var atpos = email.indexOf("@");
             var dotpos = email.lastIndexOf(".");
-        
+
             if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= email.length) {
                 $( "p.err#email" ).text( "Please enter a valid email address." );
                 error = true
             }
         }
-        
+
         if ( !( $("textarea#message").val().length > 0) ) {
             $( "p.err#message" ).text( "Please enter a message." );
             error = true;
         }
-        
+
         if (error === true) {
             return false;
         }
-        
+
         $.ajax( {
             type: "POST",
             url: "/ajax/contact-form.php",
