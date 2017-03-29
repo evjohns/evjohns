@@ -6,17 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="y9x7ExMn2FtSdUiHY6qAd0so3rFsb5ykC86qb5P5ulg" />
     <meta name="description" content="Evan Johnson, freelance web devloper and designer based in the UK.">
-    <meta name="keywords" content="Web development, web developer, web designer, web design, coding, programming, php, html, css">
+    <meta name="keywords" content="Web development, web developer, web designer, web design, coding, programming, php, html, css, UX, UX design">
     <meta name="author" content="Evan Johnson">
-
-    <link href="/themes/index.css" rel="stylesheet" type="text/css">
-    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
-
+    <link href="/themes/index.min.css" rel="stylesheet" type="text/css">
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="/js/typed.js"></script>
-
+    <script src="/js/typed.min.js"></script>
+    <script src="/js/global.min.js"></script>
     <title>Evan Johnson | Web development and design.</title>
-
 </head>
 
 <body>
@@ -26,15 +23,14 @@
           <span class="typed"></span>
       </div>
   </nav>
-
     <section id="main-menu">
         <div class="top-bar">
-            <hr>
+          <hr>
         </div>
         <div class="menu">
-            <h1 class="title">Evan Johnson  &middot;  Web developer  &middot;  Designer</h1>
+            <h1 class="title">Evan Johnson  &middot;  Web developer  &middot;  UX Designer</h1>
             <ul class="menu-list">
-                <li id="contact-menu"><a>Contact</a></li>
+                <li id="contact-menu"><a href="#contact">Contact</a></li>
                 <li class="portfolio-heading"><a class="portfolio">Portfolio <span class="expand">+</span><span class="shrink">-</span></a>
                     <ol class="portfolio-items">
                         <li><a href="http://www.buildbase.co.uk/" target="_blank">buildbase.co.uk</a></li>
@@ -47,7 +43,6 @@
         </div>
     </section>
 </div>
-
     <section id="contact">
         <div class="contact-container">
         <h2 id="contact-header">Contact</h2>
@@ -58,109 +53,19 @@
                     <input name="name" id="name" type="text" placeholder="Name" required>
                     <p class="err" id="name"></p>
                 </div>
-
                 <div class="row">
                     <label for="email">email</label>
                     <input id="email" name="email" type="email" placeholder="Email Address" required>
                     <p class="err" id="email"></p>
                 </div>
-
                 <div class="bottom-cell">
                     <label for="message">message</label>
                     <textarea id="message" name="message" placeholder="Enter your message here." required></textarea>
                     <p class="err" id="message"></p>
                 </div>
-
-                <button type="button">Send</button>
-
-                <div id='message-success'>
-                    <p>Thanks for your message, I'll reply asap.</p>
-                </div>
-
+                <button id="send-btn" type="button">Send</button>
             </form>
         </div>
     </section>
-
-    <div class="overlay">
-        <div class="loader"></div>
-    </div>
-
-<script>
-    $(function(){
-        $(".typed").typed({
-        strings: ["evjon", "evjohns.com"],
-        typeSpeed: 75,
-        startDelay: 1000,
-        loop: false,
-    });
-});
-
-$("#contact-menu").click(function() {
-    $('html,body').animate({scrollTop: $("#contact").offset().top},'slow');
-});
-
-$(".portfolio").click(function() {
-    $(".expand").toggle();
-    $(".shrink").toggle();
-    $(".portfolio-items").slideToggle();
-});
-
-$( "#contact-form button" ).click( function(e) {
-        e.preventDefault();
-        var error = false;
-
-        if ( !($("input#name").val().length > 0) ) {
-            $( "p.err#name" ).text( "Please enter a name." );
-            error = true;
-        }
-
-        if ( !($("input#email").val().length > 0) ) {
-            $( "p.err#email" ).text( "Please enter an email address." );
-            error = true;
-
-        } else {
-            var email = $("input#email").val();
-            var atpos = email.indexOf("@");
-            var dotpos = email.lastIndexOf(".");
-
-            if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= email.length) {
-                $( "p.err#email" ).text( "Please enter a valid email address." );
-                error = true
-            }
-        }
-
-        if ( !( $("textarea#message").val().length > 0) ) {
-            $( "p.err#message" ).text( "Please enter a message." );
-            error = true;
-        }
-
-        if (error === true) {
-            return false;
-        }
-
-        $.ajax( {
-            type: "POST",
-            url: "/ajax/contact-form.php",
-            data: { "name": $( "input#name" ).val(), "email": $( "input#email" ).val(), "message": $( "textarea#message" ).val() },
-            success: function(result) {
-                $( "form#contact-form >*" ).fadeOut();
-                $(".contact-container h3#contact-header").fadeOut();
-                $( "div#message-success" ).delay(1000).fadeIn(500);
-                $('html,body').animate({scrollTop: $(".contact-container").offset().top},'slow');
-            }
-        } );
-    } );
-
-$( document ).ready(function() {
-    $(document).ajaxStart(function() {
-            $(".overlay").show();
-    })
-    $(document).ajaxStop(function() {
-            $(".overlay").hide();
-    })
-});
-</script>
-
 </body>
-
 </html>
